@@ -6,4 +6,12 @@
             <li>{{ category.name }}</li>
         {% endfor %}
     </ul>
+
+    <ul>
+        {% for todo in todos %}
+            <li>{{ todo.name }}</li>
+            <li>{{ todo.category }}</li>
+            <li>{{ todo.date_created }}</li>
+        {% endfor %}
+    </ul>
 {% endblock content %}
