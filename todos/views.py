@@ -10,7 +10,13 @@ class HomeView(View):
 
     def get(self, request):
         categories = Category.objects.all()
-        todos = Todo.objects.all()
+
+        selected_category = request.GET.get('category')
+
+        if selected_category:
+            todos = Todo.objects.filter(category__name=selected_category)
+        else:
+            todos = Todo.objects.all()
 
         context = {
             'categories': categories,

@@ -37,6 +37,13 @@ class HomeViewTest(TestCase):
                                  ['<Todo: todo1>', '<Todo: todo2>', '<Todo: todo3>'],
                                  ordered=False)
 
+    def test_todos_can_be_filtered_by_categories(self):
+        data = {'category': self.category1}
+        response = self.client.get(reverse('todos:home'), data)
+
+        self.assertQuerysetEqual(response.context['todos'],
+                                 ['<Todo: todo1>'], ordered=False)
+
 
 class NewTodoViewTest(TestCase):
 
