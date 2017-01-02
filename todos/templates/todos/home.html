@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul>
+        <li><a href="{% url 'todos:home' %}">All</a></li>
+        {% for category in categories %}
+            <li><a href="?category={{ category.name }}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for todo in todos %}
+            <li>{{ todo.name }}</li>
+            <li>{{ todo.category }}</li>
+            <li>{{ todo.date_created }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'todos:new_todo' %}">New Todo</a>
+{% endblock content %}
