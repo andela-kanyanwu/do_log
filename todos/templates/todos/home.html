@@ -1,20 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <ul>
-        <li><a href="{% url 'todos:home' %}">All</a></li>
-        {% for category in categories %}
-            <li><a href="?category={{ category.name }}">{{ category.name }}</a></li>
-        {% endfor %}
-    </ul>
+    <div class="row">
+        <div class="col s3 category-tags">
+            <ul>
+                <li><a href="{% url 'todos:home' %}"><div class="chip">All</div></a></li>
+                {% for category in categories %}
+                    <li><a href="?category={{ category.name }}"><div class="chip">{{ category.name }}</div></a></li>
+                {% endfor %}
+            </ul>
+        </div>
 
-    <ul>
-        {% for todo in todos %}
-            <li>{{ todo.name }}</li>
-            <li>{{ todo.category }}</li>
-            <li>{{ todo.date_created }}</li>
-        {% endfor %}
-    </ul>
+        <div class="col s9">
+            <ul>
+                {% for todo in todos %}
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">{{ todo.name }}</span>
+                                <li><div class="chip">{{ todo.category }}</div></li>
+                                <li>{{ todo.date_created }}</li>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 
-    <a href="{% url 'todos:new_todo' %}">New Todo</a>
+    <a href="{% url 'todos:new_todo' %}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 {% endblock content %}
