@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <a href="{% url 'todos:home' %}">Home</a>
     <form action="" method="post">
         {% csrf_token %}
         {{ todo_form }}
-        <input type="submit" value="Submit">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
     </form>
 {% endblock content %}
